@@ -1,0 +1,33 @@
+[
+  {"test_name": "validate good contact request", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"emma smith\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate not exit contact request with is_current_company true", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"NotExistingContact\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate good contact request with is_current_company false", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"NotExistingContact\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": false}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate empty full_name", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate empty company_name", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"emma smith\", \"company_name\": \"\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate empty is_current_company", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"emma smith\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": }", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate partial full_name with first name", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"emma\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate partial full_name with last name", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"smith\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate empty json in body for contact request", "endpoint": "search_content", "method":"POST", "body":"{}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate invalid json in body", "endpoint": "search_content", "method":"POST", "body":"{\"invalid invalid emma smith\", \"company_name\": \"Construction\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate body with only full_name", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"emma smith\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate body with only company_name", "endpoint": "search_content", "method":"POST", "body":"{\"company_name\": \"Millard Public Schools\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate body with only is_current_company", "endpoint": "search_content", "method":"POST", "body":"{\"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate full_name with spaces", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"   \", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate full_name with symbols", "endpoint": "search_content", "method":"POST", "body":"{\"full_name\": \"!@#$%\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"}
+]
+
+# positive test
+1. post for an existing contact and validate the response
+2. post for not existing person and validate the response ( should get empty response, with status code 200)
+
+# nagitive test
+1. post for partial json data or empty fields and validate the response ( full_name, company_name, is_current_company)
+2. post for empty json in body
+
+# playing test
+1. mulitple api requests
+2. big json in body
+3. invalid json
+4. searching for duplicate contacts
+5. searching for contact with few works (make sure the relvant is shown)
+6. searching for symbols \ space

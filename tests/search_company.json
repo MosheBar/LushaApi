@@ -1,0 +1,33 @@
+[
+  {"test_name": "validate good company_name request", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"Millard Public Schools\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate not exist company_name", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"NotExistingCompany\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate number of existing company_name", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"Construction\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate body json from search_content", "endpoint": "search_company", "method":"POST", "body":"{\"full_name\": \"emma smith\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate empty json in body for company request", "endpoint": "search_company", "method":"POST", "body":"{}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate invalid json in body", "endpoint": "search_company", "method":"POST", "body":"{\"invalid invalid emma smith\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate exist last name in search_company ", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"smith\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate exist first name in search_company", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"emma\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate company_name with true", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"true\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate company_name with false", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"false\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate company_name with spaces", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"  \"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate company_name with symbols", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"!@#$%\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"}
+]
+
+# positive test
+1. post for an existing company and validate the response
+2. post for not existing company and validate the response ( should get empty response, with status code 200)
+3. post for substring of companies and validate the company list response (e.g. Construction validate number)
+
+
+# nagitive test
+1. post for contact json data and validate the response ( full_name, company_name, is_current_company)
+2. post for empty json in body
+
+# playing test
+1. mulitple api requests
+2. big json in body
+3. invalid json
+4. searching for contact first \ last name
+5. searching for true\ false
+6. searching for symbols \ space
+7. searching for duplicate companies

@@ -1,0 +1,14 @@
+[
+  {"test_name": "validate good company_name request", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"Millard Public Schools\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate not exist company_name", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"NotExistingCompany\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate number of existing company_name", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"Construction\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate body json from search_content", "endpoint": "search_company", "method":"POST", "body":"{\"full_name\": \"emma smith\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate empty json in body for company request", "endpoint": "search_company", "method":"POST", "body":"{}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate invalid json in body", "endpoint": "search_company", "method":"POST", "body":"{\"invalid invalid emma smith\", \"company_name\": \"Millard Public Schools\", \"is_current_company\": true}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate exist last name in search_company ", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"smith\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate exist first name in search_company", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"emma\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate company_name with true", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"true\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate company_name with false", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"false\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate company_name with spaces", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"  \"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"},
+  {"test_name": "validate company_name with symbols", "endpoint": "search_company", "method":"POST", "body":"{\"company_name\": \"!@#$%\"}", "expected_response": "", "expected_status_code": 200, "validation": "equal"}
+]

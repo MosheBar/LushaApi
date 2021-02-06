@@ -1,0 +1,4 @@
+pytest==6.1.2
+allure-pytest==2.8.14
+requests==2.25.0
+asserts==0.11.1
